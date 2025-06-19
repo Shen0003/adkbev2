@@ -2,11 +2,19 @@ from typing import Optional
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 import requests
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or use ["http://localhost:3000"] if strict
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Configuration ---
-BASE_URL = "http://localhost:8000"  # ADK backend
+BASE_URL = "https://adkbev1.onrender.com"  # ADK backend
 AGENT_NAME = "multi_tool_agent"
 USER_ID = "u_2222"
 SESSION_ID = "s_2222"
